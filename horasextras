@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<title>Cálculos de Horas Extras</title>
+<div align="center" style="color:white; background-color:blue; border-width: thick; border-style: outset; border-color: #DCDCDC;" ><h2>Cálculos de Horas Extras dos Servidores Municipais</h2></div>
+<meta name="description" content="Cálculos de Horas Extras dos Servidores Municipais">
+<meta name="author" content="Paulo Geiss">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta charset="utf-8" />
+<style>
+ body { 
+    background-color:#FFFFFF;
+    color:#0000FF ;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.42em;
+    }
+    
+form{
+	 background-color:#DCDCDC;
+	 border-width: thick;
+     border-style: outset;
+     border-color: #DCDCDC;
+     text-align:center;
+	}
+
+input[type=button]{
+    background-color:#0000FF ;
+	-moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+	border-color:#0000FF;
+    color: white;
+    font-size: 100%;
+    cursor: pointer;
+    text-align: center;
+	border-radius: 15px; 
+	width:250px; 
+	height:30px;
+     }
+
+.text{
+    color:#0000FF;
+    text-align: center;
+    font-size: 16px;
+	border-radius: 15px; 
+	width:250px; 
+	height:30px;
+     }
+     
+.blue { color: #185875; }
+.yellow { color: #FFF842; }
+
+.container th h1 {
+	  font-weight: bold;
+	  font-size: 1em;
+  text-align: left;
+  color: white;
+}
+
+.container td {
+	  font-weight: normal;
+	  font-size: 0.8em;
+  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+	   -moz-box-shadow: 0 2px 2px -2px #0E1119;
+	        box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.container {
+	  text-align: left;
+	  overflow: hidden;
+	  width: 95%;
+	  margin: 0 auto;
+  display: table;
+  padding: 0 0 1em 0;
+}
+
+.container td, .container th {
+	  padding-bottom: 2%;
+	  padding-top: 2%;
+  padding-left:2%;  
+}
+
+/* Cor de fundo das linhas  */
+.container tr:nth-child(odd) {
+	  background-color:silver;
+}
+
+/* Cor de fundo das linhas  */
+.container tr:nth-child(even) {
+	  background-color:silver;
+}
+
+.container th {
+	  background-color: blue;
+}
+
+.container td:first-child { color:red; }
+
+.container tr:hover {
+   background-color: #464A52;
+-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+	   -moz-box-shadow: 0 6px 6px -6px #0E1119;
+	        box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.container td:hover {
+  background-color: #FFF842;
+  color: #403E10;
+  font-weight: bold;
+  
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  
+  transition-delay: 0s;
+	  transition-duration: 0.4s;
+	  transition-property: all;
+  transition-timing-function: line;
+}
+
+@media (max-width: 800px) {
+.container td:nth-child(5),
+.container th:nth-child(5) { display:none; }
+}
+</style>
+
+<script> 
+    var time = new Date().getHours();
+    var cumprimentar;
+    if (time < 12) 
+     {
+        cumprimentar = "Bom dia, ";
+     }
+     else if (time < 19)
+    {
+        cumprimentar = "Boa tarde, ";
+    } 
+    else 
+    {
+        cumprimentar = "Boa noite, ";
+    }
+    
+</script>
+
+<script type="text/javascript">
+var nome;
+do {
+nome = prompt ("Qual é o seu nome?");
+} while (nome == null || nome == "");
+alert(cumprimentar+nome+"! Seja bem-vindo! Vamos começar?");
+</script>
+
+<script>
+function calcular() {
+  var entra = document.getElementById('numeros').value;
+  entra = entra.split(".").join("");
+  entra = entra.split(",").join(".");
+  var resultado1 = eval(entra);
+  document.getElementById('resultado').innerHTML = resultado1;
+}
+</script>
+
+<script>
+
+        function BlockKeybord()
+        {
+            if(window.event) // IE
+            {
+                if((event.keyCode < 48) || (event.keyCode > 57))
+                {
+                    event.returnValue = false;
+                }
+            }
+            else if(e.which) // Netscape/Firefox/Opera
+            {
+                if((event.which < 48) || (event.which > 57))
+                {
+                    event.returnValue = false;
+                }
+            }
+
+
+        }
+
+        function troca(str,strsai,strentra)
+        {
+            while(str.indexOf(strsai)>-1)
+            {
+                str = str.replace(strsai,strentra);
+            }
+            return str;
+        }
+
+        function FormataMoeda(campo,tammax,teclapres,caracter)
+        {
+            if(teclapres == null || teclapres == "undefined")
+            {
+                var tecla = -1;
+            }
+            else
+            {
+                var tecla = teclapres.keyCode;
+            }
+
+            if(caracter == null || caracter == "undefined")
+            {
+                caracter = ".";
+            }
+
+            vr = campo.value;
+            if(caracter != "")
+            {
+                vr = troca(vr,caracter,"");
+            }
+            vr = troca(vr,"/","");
+            vr = troca(vr,",","");
+            vr = troca(vr,".","");
+
+            tam = vr.length;
+            if(tecla > 0)
+            {
+                if(tam < tammax && tecla != 8)
+                {
+                    tam = vr.length + 1;
+                }
+
+                if(tecla == 8)
+                {
+                    tam = tam - 1;
+                }
+            }
+            if(tecla == -1 || tecla == 8 || tecla >= 48 && tecla <= 57 || tecla >= 96 && tecla <= 105)
+            {
+                if(tam <= 2)
+                {
+                    campo.value = vr;
+                }
+                if((tam > 2) && (tam <= 5))
+                {
+                    campo.value = vr.substr(0, tam - 2) + ',' + vr.substr(tam - 2, tam);
+                }
+                if((tam >= 6) && (tam <= 8))
+                {
+                    campo.value = vr.substr(0, tam - 5) + caracter + vr.substr(tam - 5, 3) + ',' + vr.substr(tam - 2, tam);
+                }
+                if((tam >= 9) && (tam <= 11))
+                {
+                    campo.value = vr.substr(0, tam - 8) + caracter + vr.substr(tam - 8, 3) + caracter + vr.substr(tam - 5, 3) + ',' + vr.substr(tam - 2, tam);
+                }
+                if((tam >= 12) && (tam <= 14))
+                {
+                    campo.value = vr.substr(0, tam - 11) + caracter + vr.substr(tam - 11, 3) + caracter + vr.substr(tam - 8, 3) + caracter + vr.substr(tam - 5, 3) + ',' + vr.substr(tam - 2, tam);
+                }
+                if((tam >= 15) && (tam <= 17))
+                {
+                    campo.value = vr.substr(0, tam - 14) + caracter + vr.substr(tam - 14, 3) + caracter + vr.substr(tam - 11, 3) + caracter + vr.substr(tam - 8, 3) + caracter + vr.substr(tam - 5, 3) + ',' + vr.substr(tam - 2, tam);
+                }
+            }
+        }
+
+        function maskKeyPress(objEvent)
+        {
+            var iKeyCode;
+
+            if(window.event) // IE
+            {
+                iKeyCode = objEvent.keyCode;
+                if(iKeyCode>=48 && iKeyCode<=57) return true;
+                return false;
+            }
+            else if(e.which) // Netscape/Firefox/Opera
+            {
+                iKeyCode = objEvent.which;
+                if(iKeyCode>=48 && iKeyCode<=57) return true;
+                return false;
+            }
+
+
+        }
+</script>
+
+<script >
+function calcularvalordahora()
+{
+var valorsal,cargahora; 
+valorsal = frmValorhora.salario.value;
+cargahora = frmValorhora.cargahoraria.value;
+
+valorsal= valorsal.split(".").join("");
+valorsal= valorsal.split(",").join(".");
+ if (valorsal==""){
+    alert("Salário em branco! Digite um valor válido do salário para calcular o valor de sua hora!");
+    return;}
+    if (isNaN(valorsal)){
+    alert("Salário inválido! Digite um valor válido do salário para calcular o valor de sua hora!");
+    return;}
+ if (valorsal<0){
+    alert("Salário inválido! Digite um valor válido do salário para calcular o valor de sua hora!");
+     return;}
+  
+ if (isNaN(cargahora)){
+    alert(" Carga horária mensal em branco! Sua carga horaria mensal é calculada multiplicando o número de horas semanais por 5. ex: 40 x 5 = 200"); 
+     return;}
+ if (cargahora<150||cargahora>220){
+    alert("Carga horária mensal inválida! Sua carga horaria mensal é calculada multiplicando o número de horas semanais por 5. ex: 40 x 5 = 200");
+     return;}
+
+valorhora = eval("valorsal /cargahora ");
+valorhora50=(valorhora/2+valorhora);
+valorhora100=(valorhora+valorhora);
+
+document.getElementById('resultado50').innerHTML  =(valorhora50).toFixed(2);
+document.getElementById('resultado100').innerHTML  =(valorhora100).toFixed(2);
+frmValor.txtValorhora50.value=(valorhora50).toFixed(2);
+frmValor.txtValorhora100.value=(valorhora100).toFixed(2);
+
+alert(nome+", o valor unitário da sua hora extra é R$ "+(valorhora).toFixed(2)+"\nSua hora 50% vale R$ "+(valorhora50).toFixed(2)+"\nSua hora 100% vale R$ "+(valorhora100).toFixed(2)+" .");
+  
+}
+</script>
+<script >
+function calcularvalortotal()
+{
+var numhoras50,numhoras100,valorhora50,valorhora100,val50,val100; 
+
+numhoras50 = frmValor.txtHoras50.value;
+numhoras100 = frmValor.txtHoras100.value;
+valorhora50 = frmValor.txtValorhora50.value;
+valorhora100 = frmValor.txtValorhora100.value;
+
+numhoras50 = parseFloat(numhoras50);
+numhoras100 = parseFloat(numhoras100);
+valorhora50 = parseFloat(valorhora50);
+valorhora100 = parseFloat(valorhora100);
+ 
+ if (isNaN(numhoras50) && isNaN(numhoras100)){
+    alert("Não há nenhuma hora extra para calcular!");
+     return;}  
+ if (isNaN(numhoras50)){
+ numhoras50=0;
+ alert("Não há nenhuma hora extra 50 % para calcular!");
+ }
+ if (numhoras50<0){
+ alert("Número de horas extras a 50% inválido!");
+ return;
+ }
+ if (isNaN(numhoras100)){
+ numhoras100=0;
+ alert("Não há nenhuma hora extra 100% para calcular!");
+ }
+ if (numhoras100<0){
+ alert("Número de horas extras a 100% inválido!");
+ return;
+ }
+ if (isNaN(valorhora50)){
+    alert("Valor da hora extra 50% em branco!");
+     return;}
+  if (isNaN(valorhora100)){
+    alert("Valor da hora extra 100% em branco!"); 
+     return;}
+ 
+if(numhoras50>=0||numhoras100>=0)
+{
+val50=(numhoras50*valorhora50);
+val100=(numhoras100*valorhora100);
+vtotal=val50+val100;
+
+compensar50=(numhoras50+(numhoras50/2));
+compensar100=(numhoras100*2);
+totalcompensar=(compensar50+compensar100);
+
+alert(nome+", o valor para receber de hora extra 50% é R$ "+(val50).toFixed(2)+"\nO valor para receber de hora extra 100% é R$ "+(val100).toFixed(2)+"\nO valor total a receber é R$ "+(vtotal).toFixed(2));
+}
+document.getElementById('valor50').innerHTML  =(val50).toFixed(2);
+document.getElementById('valor100').innerHTML  =(val100).toFixed(2);
+document.getElementById('valortotal').innerHTML  =(vtotal).toFixed(2);  
+document.getElementById('horascompensar50').innerHTML  =(compensar50).toFixed(2);
+document.getElementById('horascompensar100').innerHTML  =(compensar100).toFixed(2);
+document.getElementById('totalhorascomp').innerHTML  =(totalcompensar).toFixed(2);
+}
+</script>
+</head>
+
+<body>
+<form name ="frmValorhora" id="valordahora" >
+<h2>Calculo do Valor da Hora</h2>
+<label>Salário R$:</label>
+<br><input type ="text" id="salario" class="text" name="salario" size="10" maxlength="10" onkeydown="FormataMoeda(this,10,event)" onkeypress="return maskKeyPress(event)" placeholder="Digite aqui Base Calc. IRRF*" /><br>
+<p>*Se tiver horas extras e/ou adicional noturno, descontar antes de inserir o valor do salário.Use o Salário Base 
+Calc. IRRF, pois já está descontado o Auxilio Alimentação.</p>
+<label>Carga Horária Mensal:</label>
+<br><input type ="number" class="text" min="150" max="220" name="cargahoraria"placeholder="Digite aqui Carga Horária Mensal" value="200" /><br>
+<br><input  type="button" value="Calcular Valor da Hora" onclick="javascript:calcularvalordahora();"/>
+<br><br>
+</form>
+
+<form name ="frmValor" id="frmValor">
+<h2>Cálculo de Horas para Receber e Compensar</h2>
+<label>Número de horas a 50%:</label>
+<br>
+<input type ="number" class="text" min="0" max="100" name="txtHoras50" placeholder="Digite aqui o Nº de horas 50%"/><br>
+<br><label>Número de horas a 100%:</label>
+<br><input type ="number" class="text" min="0" max="1000000" name="txtHoras100" placeholder="Digite aqui o Nº de horas 100%"/><br>
+<br><label>Valor da hora a 50%:</label>
+<br><input type ="number" class="text" min="0" max="1000000" name="txtValorhora50" placeholder="Digite aqui valor da hora 50%" /><br>
+<br><label>Valor da hora a 100%:</label>
+<br><input type ="number" class="text" min="0" max="1000000" name="txtValorhora100" placeholder="Digite aqui valor da hora 100%" /><br>
+<br><input  type="button" value="Calcular" onclick="javascript:calcularvalortotal();"/>
+<br><br>
+<table class="container">
+	<thead>
+		<tr>
+			<th><h1>Horas</h1></th>
+			<th><h1>50%</h1></th>
+			<th><h1>100%</h1></th>
+			<th><h1>Total</h1></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Receber</td>
+			<td>R$ <span id="valor50"></span></td>
+			<td>R$ <span id="valor100"></span></td>
+			<td>R$ <span id="valortotal"></span></td>
+		</tr>
+		<tr>
+			<td>Compensar</td>
+			<td><span id="horascompensar50"></span> horas</td>
+			<td><span id="horascompensar100"></span> horas</td>
+			<td><span id="totalhorascomp"></span> horas</td>
+		</tr>
+        <tr>
+			<td>Valor/hora</td>
+			<td>R$ <span id="resultado50"></span></td>
+			<td>R$ <span id="resultado100"></span></td>
+		</tr>
+	</tbody>
+</table>
+</form>
+
+<form >
+<h2>Calculadora</h2>
+<p id="calculadora">
+ <input type="text" class="text"  id="numeros" value="ex: (3500-240)/200"><br>
+<br><input type=button value="Calcular" onclick="calcular()">
+<br><br><b>Resultado:<span id="resultado">(Toque  "Calcular")</span></b>
+</p>
+</form>
+<strong>Links Úteis:</strong>
+<li><a href="http://servertb.ijui.rs.gov.br:81/gpweb/logon_senha.asp" target="_blank">CONTRACHEQUE WEB</a></li>
+<li><a href="http://www.ijui.rs.gov.br/" target="_blank">MUNICÍPIO DE IJUÍ</a></li>
+Desenvolvedor: paulogeiss@hotmail.com.Todos os direitos reservados.
+</body>
+</html>
